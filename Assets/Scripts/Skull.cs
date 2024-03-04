@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Skull : MonoBehaviour, ISpawnedObject
+public class Skull : MonoBehaviour
 {
     [SerializeField, Range(1f, 5f)]
     private float _movementSpeed;
