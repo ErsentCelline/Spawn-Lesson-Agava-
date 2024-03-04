@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public struct SpawnData
 {
     [SerializeField]
-    private Vector2 _moveDirection;
+    private Transform _target;
     [SerializeField]
     private Transform _spawnPoint;
-    public readonly Vector2 MoveDirection => _moveDirection;
+    public readonly Transform Target => _target;
 
     public readonly Vector2 SpawnPoint => _spawnPoint.position;
 }

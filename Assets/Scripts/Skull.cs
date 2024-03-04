@@ -8,19 +8,20 @@ public class Skull : MonoBehaviour
     [SerializeField, Range(1f, 5f)]
     private float _movementSpeed;
 
-    private Vector2 _movementDirection;
     private SpriteRenderer _spriteRenderer;
+    private Transform _target;
 
-    public void Initialize(Vector2 moveDirection)
+    public void Initialize(Transform target)
     {
-        _movementDirection = moveDirection;
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _target = target;
     }
 
-    public void Update()
+    private void Update()
     {
-        _spriteRenderer.flipX = _movementDirection.x < 0;
+        _spriteRenderer.flipX = _target.position.x < transform.position.x;
 
-        transform.Translate(_movementSpeed * Time.deltaTime * _movementDirection);
+        transform.position = Vector2.MoveTowards(transform.position, _target.position, _movementSpeed * Time.deltaTime);
     }
 }

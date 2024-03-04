@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,7 +12,7 @@ public class SkullSpawner
     public Skull Spawn()
     {
         var skull = Object.Instantiate(_objectToSpawn, _spawnData.SpawnPoint, Quaternion.identity);
-        skull.Initialize(_spawnData.MoveDirection);
+        skull.Initialize(_spawnData.Target);
 
         return skull;
     }
