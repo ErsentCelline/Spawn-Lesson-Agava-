@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D), typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
 public class Signaling : MonoBehaviour
 {
-    private const int MaxVolume = 1;
-    private const int MinVolume = 0;
+    public const int MaxVolume = 1;
+    public const int MinVolume = 0;
 
     [SerializeField]
     private float _volumeChangeRate;
 
     private AudioSource _audio;
     private float _targetVolume;
+
+    public void SetTargetVolume(float value)
+        => _targetVolume = value;
 
     private void Awake()
     {
@@ -23,15 +24,8 @@ public class Signaling : MonoBehaviour
     private void Update()
     {
         _audio.volume = Mathf.MoveTowards(_audio.volume, _targetVolume, _volumeChangeRate * Time.deltaTime);
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        _targetVolume = MaxVolume;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _targetVolume = MinVolume;
+        if (_targetVolume == MinVolume && _audio.volume == MinVolume)
+            gameObject.SetActive(false);
     }
 }
