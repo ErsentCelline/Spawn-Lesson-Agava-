@@ -7,7 +7,6 @@ public class SignalTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _signaling.gameObject.SetActive(true);
         _signaling.SetTargetVolume(Signaling.MaxVolume);
     }
 
