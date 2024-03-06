@@ -3019,6 +3019,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: skull_v1_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1049772722085752756, guid: 73ba3139d7622fa4bb00ddb5e512534d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7547046365242353444, guid: 73ba3139d7622fa4bb00ddb5e512534d, type: 3}
       propertyPath: m_Enabled
       value: 0

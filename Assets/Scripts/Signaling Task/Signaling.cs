@@ -12,20 +12,26 @@ public class Signaling : MonoBehaviour
     private AudioSource _audio;
     private float _targetVolume;
 
-    public void SetTargetVolume(float value)
-    {
-        _targetVolume = value;
-
-        if (_audio.isPlaying == false )
-            _audio.Play();
-
-        StartCoroutine(Signal());
-    }
+    private IEnumerator SignalRoutine;
 
     private void Awake()
     {
         _audio = GetComponent<AudioSource>();
         _targetVolume = 0;
+    }
+
+    public void SetEnabled(bool enabled)
+    {
+        if (_audio.isPlaying)
+            StopCoroutine(SignalRoutine);
+
+        SignalRoutine = Signal();
+
+        _targetVolume = enabled ? MaxVolume : MinVolume;
+
+        _audio.Play();
+            
+        StartCoroutine(SignalRoutine);
     }
 
     private IEnumerator Signal()
@@ -36,7 +42,7 @@ public class Signaling : MonoBehaviour
             yield return null;
         }
 
-        if (_targetVolume == MinVolume && _audio.volume == MinVolume)
+        if (_audio.volume == MinVolume)
             _audio.Stop();
     }
 }

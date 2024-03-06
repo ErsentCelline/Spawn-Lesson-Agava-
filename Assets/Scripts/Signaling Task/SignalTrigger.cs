@@ -1,17 +1,27 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class SignalTrigger : MonoBehaviour
 {
     [SerializeField] private Signaling _signaling;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _signaling.SetTargetVolume(Signaling.MaxVolume);
+        switch (collision.tag)
+        {
+            case ObjectTags.Enemy:
+                _signaling.SetEnabled(true);
+                break;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _signaling.SetTargetVolume(Signaling.MinVolume);
+        switch (collision.tag)
+        {
+            case ObjectTags.Enemy:
+                _signaling.SetEnabled(false);
+                break;
+        }
     }
 }
