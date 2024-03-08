@@ -10,7 +10,7 @@ public class SignalTrigger : MonoBehaviour
         switch (collision.tag)
         {
             case ObjectTags.Enemy:
-                _signaling.SetEnabled(true);
+                _signaling.FadeIn();
                 break;
         }
     }
@@ -20,7 +20,7 @@ public class SignalTrigger : MonoBehaviour
         switch (collision.tag)
         {
             case ObjectTags.Enemy:
-                _signaling.SetEnabled(false);
+                _signaling.FadeOut();
                 break;
         }
     }

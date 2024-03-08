@@ -20,17 +20,23 @@ public class Signaling : MonoBehaviour
         _targetVolume = 0;
     }
 
-    public void SetEnabled(bool enabled)
+    public void FadeIn()
+    {
+        SignalRoutine = Signal();
+
+        _targetVolume = MaxVolume;
+
+        _audio.Play();
+        StartCoroutine(SignalRoutine);
+    }
+
+    public void FadeOut()
     {
         if (_audio.isPlaying)
             StopCoroutine(SignalRoutine);
 
-        SignalRoutine = Signal();
+        _targetVolume = MinVolume;
 
-        _targetVolume = enabled ? MaxVolume : MinVolume;
-
-        _audio.Play();
-            
         StartCoroutine(SignalRoutine);
     }
 
