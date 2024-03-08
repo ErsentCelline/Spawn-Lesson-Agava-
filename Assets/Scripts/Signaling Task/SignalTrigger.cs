@@ -7,21 +7,13 @@ public class SignalTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (collision.tag)
-        {
-            case ObjectTags.Enemy:
-                _signaling.FadeIn();
-                break;
-        }
+        if (collision.gameObject.TryGetComponent<Skull>(out Skull component))
+            _signaling.FadeIn();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        switch (collision.tag)
-        {
-            case ObjectTags.Enemy:
-                _signaling.FadeOut();
-                break;
-        }
+        if (collision.gameObject.TryGetComponent<Skull>(out Skull component))
+            _signaling.FadeOut();
     }
 }
